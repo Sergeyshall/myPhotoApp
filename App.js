@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import RegistrationScreen from './screens/RegistrationScreen';
 const App = () => {
   console.log('Maria');
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app! </Text>
-      <Text style={styles.mariaText}>Hello, Maria!</Text>
+      <RegistrationScreen />
+
       <StatusBar style="auto" />
     </View>
   );
