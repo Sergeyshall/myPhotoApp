@@ -6,7 +6,6 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
-  Dimensions,
 } from 'react-native';
 
 import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
@@ -113,10 +112,6 @@ const styles = StyleSheet.create({
     borderColor: '#E8E8E8',
     borderRadius: 8,
     padding: 10,
-    shadowOffset: { width: 0, height: 2 },
-    shadowColor: '#171717',
-    shadowOpacity: 4,
-    shadowRadius: 4,
     borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',

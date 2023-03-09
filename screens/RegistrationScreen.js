@@ -6,8 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
-  Dimensions,
 } from 'react-native';
+
 import imgAvatar from '../Img/Avatar.jpg';
 import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
 import Wrapper from '../components/Wrapper';
@@ -17,6 +17,7 @@ const initialState = {
   email: '',
   password: '',
 };
+
 export default RegistrationScreen = ({ onSignInPress }) => {
   // const [login, setLogin] = React.useState('');
   // const [mail, setMail] = React.useState('');
@@ -31,7 +32,7 @@ export default RegistrationScreen = ({ onSignInPress }) => {
 
   const keybordHide = () => {
     setIsShowKeyboard(false);
-    //Keyboard.dismiss();
+    Keyboard.dismiss();
     setState(initialState);
   };
   return (
@@ -64,7 +65,6 @@ export default RegistrationScreen = ({ onSignInPress }) => {
             email: value,
           }))
         }
-        // value={mail}
         placeholder="e-mail"
         onFocus={() => setIsShowKeyboard(true)}
       ></TextInput>
@@ -132,11 +132,7 @@ const styles = StyleSheet.create({
     borderColor: '#E8E8E8',
     borderRadius: 8,
     padding: 10,
-    shadowOffset: { width: 0, height: 2 },
-    shadowColor: '#171717',
-    shadowOpacity: 4,
-    shadowRadius: 4,
-    borderRadius: 8,
+    borderRadius: 4,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
