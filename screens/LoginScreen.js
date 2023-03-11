@@ -16,9 +16,14 @@ const initialState = {
   email: '',
   password: '',
 };
-export default LoginScreen = ({ onRegisterPress }) => {
+export default LoginScreen = ({
+  onLoginSuccessful,
+  navigation,
+  route,
+}) => {
   // const [login, setLogin] = React.useState('');
   // const [mail, setMail] = React.useState('');
+  // const { userId } = route.params;
   const [passWord, setPassWord] = useState('');
   const [state, setState] = useState(initialState);
   const [isShowKeybord, setIsShowKeybord] = useState(false);
@@ -32,6 +37,13 @@ export default LoginScreen = ({ onRegisterPress }) => {
     setState(initialState);
     console.log(state);
   };
+
+  const loginHandler = () => {
+    keybordHide();
+
+    onLoginSuccessful();
+  };
+
   return (
     <Wrapper title="Login" hideAvatar>
       <TextInput
@@ -73,11 +85,18 @@ export default LoginScreen = ({ onRegisterPress }) => {
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.btn}
-        onPress={keybordHide}
+        onPress={() => {
+          navigation.navigate('Home');
+        }}
       >
         <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
-      <Text style={styles.signInText} onPress={onRegisterPress}>
+      <Text
+        style={styles.signInText}
+        onPress={() => {
+          navigation.navigate('Registration');
+        }}
+      >
         Do not have account? Register
       </Text>
     </Wrapper>

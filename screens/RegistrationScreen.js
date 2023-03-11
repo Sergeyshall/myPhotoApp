@@ -18,7 +18,7 @@ const initialState = {
   password: '',
 };
 
-export default RegistrationScreen = ({ onSignInPress }) => {
+export default RegistrationScreen = ({ navigation }) => {
   // const [login, setLogin] = React.useState('');
   // const [mail, setMail] = React.useState('');
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -93,11 +93,19 @@ export default RegistrationScreen = ({ onSignInPress }) => {
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.btn}
-        onPress={keybordHide}
+        // onPress={keybordHide}
+        onPress={() => {
+          navigation.navigate('Home');
+        }}
       >
         <Text style={styles.btnText}>Registered</Text>
       </TouchableOpacity>
-      <Text style={styles.signInText} onPress={onSignInPress}>
+      <Text
+        style={styles.signInText}
+        onPress={() => {
+          navigation.navigate('Login');
+        }}
+      >
         Has already registered? Sign In
       </Text>
     </Wrapper>

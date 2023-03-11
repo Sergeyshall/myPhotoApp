@@ -1,39 +1,58 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Button, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import RegistrationScreen from './screens/RegistrationScreen';
 import useCachedResources from './hooks/useCachedResources';
 import LoginScreen from './screens/LoginScreen';
-import { useState } from 'react';
+import HomeScreen from './screens/HomeScreen';
 
-const LOGIN_PAGE = 'login';
-const REGISTRATION_PAGE = 'register';
-
+const MainStack = createStackNavigator();
 const App = () => {
   console.log('Maria');
   const isLoadingComplete = useCachedResources();
-  const [currentPage, setCurrentPage] = useState(LOGIN_PAGE);
 
   if (!isLoadingComplete) {
     return null;
   }
 
-  const pages = {
-    [LOGIN_PAGE]: (
-      <LoginScreen
-        onRegisterPress={() => setCurrentPage(REGISTRATION_PAGE)}
-      />
-    ),
-    [REGISTRATION_PAGE]: (
-      <RegistrationScreen
-        onSignInPress={() => setCurrentPage(LOGIN_PAGE)}
-      />
-    ),
-  };
-
   return (
-    <View style={styles.container}>
-      {pages[currentPage]}
-      <StatusBar style="auto" />
+    <View style={{ height: '100%' }}>
+      <NavigationContainer>
+        <MainStack.Navigator initialRouteName="Registration">
+          <MainStack.Screen
+            name="Registration"
+            component={RegistrationScreen}
+            options={{ title: 'Registration screen' }}
+          />
+          <MainStack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ title: 'Login screen' }}
+          />
+          <MainStack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: 'Home screen',
+              headerStyle: {
+                backgroundColor: '#f4511e',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                fontSize: 20,
+              },
+              headerRight: () => (
+                <Button
+                  onPress={() => alert('This is a button!')}
+                  title="Press me"
+                  color="#fff"
+                />
+              ),
+            }}
+          />
+        </MainStack.Navigator>
+      </NavigationContainer>
     </View>
   );
 };
