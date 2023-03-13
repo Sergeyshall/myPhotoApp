@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Keyboard,
 } from 'react-native';
+import Context from '../context';
 
 import imgAvatar from '../Img/Avatar.jpg';
 import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
@@ -18,10 +19,16 @@ const initialState = {
   password: '',
 };
 
-export default RegistrationScreen = ({ navigation }) => {
+export default RegistrationScreen = ({
+  navigation,
+  onLoginSuccessful,
+}) => {
   // const [login, setLogin] = React.useState('');
   // const [mail, setMail] = React.useState('');
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const context = useContext(Context);
+
+  console.log(context);
 
   const [passWord, setPassWord] = useState('');
   const [avatar, setAvatar] = useState('');
@@ -95,7 +102,7 @@ export default RegistrationScreen = ({ navigation }) => {
         style={styles.btn}
         // onPress={keybordHide}
         onPress={() => {
-          navigation.navigate('Home');
+          context.setIsAuth(true);
         }}
       >
         <Text style={styles.btnText}>Registered</Text>

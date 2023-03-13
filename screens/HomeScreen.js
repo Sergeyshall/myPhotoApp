@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
 import ProfileScreen from './ProfileScreen';
 import PostsScreen from './PostsScreen';
+import CreatePostsScreen from './CreatePostsScreen';
 
 const Tabs = createBottomTabNavigator();
 
@@ -35,6 +36,10 @@ export default HomeScreen = ({ onRegisterPress }) => {
         }}
       >
         <Tabs.Screen name="Posts" component={PostsScreen} />
+        <Tabs.Screen
+          name="CreatePostsScreen"
+          component={CreatePostsScreen}
+        />
         <Tabs.Screen name="Profile" component={ProfileScreen} />
       </Tabs.Navigator>
     </>

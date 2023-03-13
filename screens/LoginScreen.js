@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,17 +10,15 @@ import {
 
 import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
 import Wrapper from '../components/Wrapper';
+import Context from '../context';
 
 const initialState = {
   login: '',
   email: '',
   password: '',
 };
-export default LoginScreen = ({
-  onLoginSuccessful,
-  navigation,
-  route,
-}) => {
+export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
+  const context = useContext(Context);
   // const [login, setLogin] = React.useState('');
   // const [mail, setMail] = React.useState('');
   // const { userId } = route.params;
@@ -86,7 +84,7 @@ export default LoginScreen = ({
         activeOpacity={0.8}
         style={styles.btn}
         onPress={() => {
-          navigation.navigate('Home');
+          context.setIsAuth(true);
         }}
       >
         <Text style={styles.btnText}>Login</Text>

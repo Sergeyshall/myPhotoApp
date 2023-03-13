@@ -1,59 +1,28 @@
-import { StyleSheet, Button, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import RegistrationScreen from './screens/RegistrationScreen';
 import useCachedResources from './hooks/useCachedResources';
-import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
 
-const MainStack = createStackNavigator();
+import { useState } from 'react';
+import Context from './context';
+import Router from './components/Router';
+
 const App = () => {
   console.log('Maria');
   const isLoadingComplete = useCachedResources();
+  const [isAuth, setIsAuth] = useState(false);
 
   if (!isLoadingComplete) {
     return null;
   }
 
   return (
-    <View style={{ height: '100%' }}>
-      <NavigationContainer>
-        <MainStack.Navigator initialRouteName="Registration">
-          <MainStack.Screen
-            name="Registration"
-            component={RegistrationScreen}
-            options={{ title: 'Registration screen' }}
-          />
-          <MainStack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{ title: 'Login screen' }}
-          />
-          <MainStack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              title: 'Home screen',
-              headerStyle: {
-                backgroundColor: '#f4511e',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                fontSize: 20,
-              },
-              headerRight: () => (
-                <Button
-                  onPress={() => alert('This is a button!')}
-                  title="Press me"
-                  color="#fff"
-                />
-              ),
-            }}
-          />
-        </MainStack.Navigator>
-      </NavigationContainer>
-    </View>
+    <Context.Provider value={{ setIsAuth }}>
+      <View style={{ height: '100%' }}>
+        <NavigationContainer>
+          <Router isAuth={isAuth} logoutHandler={() => setIsAuth(false)}/>
+        </NavigationContainer>
+      </View>
+    </Context.Provider>
   );
 };
 

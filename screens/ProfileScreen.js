@@ -17,7 +17,7 @@ export default PrifileScreen = ({ onRegisterPress }) => {
         <Text>Profile</Text>
       </View>
       <Image
-        // source={require(imgAvatar)}
+        source={imgAvatar}
         resizeMode="cover"
         style={styles.imgAvatar}
       />
