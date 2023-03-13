@@ -20,23 +20,29 @@ export default HomeScreen = ({ onRegisterPress }) => {
 
             if (route.name === 'Profile') {
               iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
+              ?'person' : 'person-outline';
             } else if (route.name === 'Posts') {
-              iconName = focused ? 'ios-list-outline' : 'ios-list';
+              iconName = focused ? 'images' : 'images-outline';
             }
+           else if (route.name === 'CreatePostsScreen') {
+            iconName = focused ? 'add-circle' : 'add-circle-outline';
+           
+          }
             return (
               <Ionicons name={iconName} size={size} color={color} />
             );
           },
         })}
         tabBarOptions={{
+          showLabel:false,
           activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
+         
         }}
       >
         <Tabs.Screen name="Posts" component={PostsScreen} />
         <Tabs.Screen
+    
           name="CreatePostsScreen"
           component={CreatePostsScreen}
         />
