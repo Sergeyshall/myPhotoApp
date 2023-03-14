@@ -92,7 +92,7 @@ export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
       <Text
         style={styles.signInText}
         onPress={() => {
-          navigation.navigate('Registration');
+          navigation.navigate('Registration', { sessionId: 45, userId: "22e24" });
         }}
       >
         Do not have account? Register

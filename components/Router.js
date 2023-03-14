@@ -3,6 +3,7 @@ import HomeScreen from '../screens/HomeScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native';
+import CreatePostsScreen from '../screens/CreatePostsScreen';
 
 const MainStack = createStackNavigator();
 
@@ -28,6 +29,13 @@ const useAuth = (isAuth, logoutHandler) => isAuth ? (
             color="#fff"
           />
         ),
+      }}
+    />
+    <MainStack.Screen
+      name="CreatePostsScreen"
+      component={CreatePostsScreen}
+      options={{
+        title: 'Create Post',
       }}
     />
   </>
