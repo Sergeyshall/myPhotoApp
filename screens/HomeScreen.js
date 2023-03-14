@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import ProfileScreen from './ProfileScreen';
 import PostsScreen from './PostsScreen';
 import CreatePostsScreen from './CreatePostsScreen';
 import { useNavigation } from '@react-navigation/native';
+import Context from '../context';
+
 
 const Tabs = createBottomTabNavigator();
 
@@ -44,6 +46,8 @@ const tabOptionsButtonsMap = {
 
 export default HomeScreen = ({ onRegisterPress }) => {
   const navigation = useNavigation()
+  const context = useContext(Context)
+
   return (
     <>
       <Tabs.Navigator
@@ -56,6 +60,13 @@ export default HomeScreen = ({ onRegisterPress }) => {
 
             return tabOptionsButtonsMap[route.name][focusedState](size, color)
           },
+          headerRight: () => (
+            <Button
+              onPress={() => context.setIsAuth(false)}
+              title="Logout"
+              color="#000"
+            />
+          ),
         })}
 
         tabBarOptions={{
@@ -81,12 +92,9 @@ export default HomeScreen = ({ onRegisterPress }) => {
             tabPress: e => {
               // Prevent default action
               e.preventDefault();
-        
-              //Any custom code here
               navigation.navigate('CreatePostsScreen')
             },
           }}
-          onPress
         />
         <Tabs.Screen name={PROFILE_ROUTE} component={ProfileScreen} />
         {/* <Tabs.Screen name="Home"  

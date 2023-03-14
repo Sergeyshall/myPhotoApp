@@ -7,28 +7,22 @@ import CreatePostsScreen from '../screens/CreatePostsScreen';
 
 const MainStack = createStackNavigator();
 
-const useAuth = (isAuth, logoutHandler) => isAuth ? (
+const useAuth = (isAuth) => isAuth ? (
   <>
     <MainStack.Screen
       name="Home"
       component={HomeScreen}
       options={{
-        title: 'Home screen',
-        headerStyle: {
-          backgroundColor: '#f4511e',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          fontSize: 20,
-        },
-        headerRight: () => (
-          <Button
-            onPress={logoutHandler}
-            title="Logout"
-            color="#fff"
-          />
-        ),
+        // title: 'Home screen',
+        // headerStyle: {
+        //   backgroundColor: '#f4511e',
+        // },
+        // headerTintColor: '#fff',
+        // headerTitleStyle: {
+        //   fontWeight: 'bold',
+        //   fontSize: 20,
+        // },
+        headerShown: false,
       }}
     />
     <MainStack.Screen
@@ -59,6 +53,6 @@ const useAuth = (isAuth, logoutHandler) => isAuth ? (
   </>
 );
 
-export default Router = ({isAuth, logoutHandler}) => (<MainStack.Navigator initialRouteName="Login">
-{useAuth(isAuth, logoutHandler)}
+export default Router = ({isAuth}) => (<MainStack.Navigator initialRouteName="Login">
+{useAuth(isAuth)}
 </MainStack.Navigator>)
