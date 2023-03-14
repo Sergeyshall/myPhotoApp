@@ -1,3 +1,6 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import PostsScreen from './PostsScreen';
 import {
   StyleSheet,
   Text,
@@ -10,7 +13,13 @@ import imgAvatar from '../Img/Avatar.jpg';
 import AddSvg from '../Img/AddSvg';
 import Wrapper from '../components/Wrapper';
 
-export default PrifileScreen = ({ onRegisterPress }) => {
+// const Tabs = createBottomTabNavigator();
+
+// const PROFILE_ROUTE = 'Profile';
+// const POSTS_ROUTE = 'Posts';
+// const CREATEPOSTSCREEN_ROUTE = 'CreatePostsScreen';
+
+export default ProfileScreen = () => {
   return (
     <View>
       <View>
@@ -29,6 +38,58 @@ export default PrifileScreen = ({ onRegisterPress }) => {
       <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
         <Text style={styles.btnText}>+</Text>
       </TouchableOpacity>
+
+      {/* <Tabs.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            console.log(route);
+
+            if (route.name === { CREATEPOSTSCREEN_ROUTE }) {
+              iconName = focused ? 'add' : 'add-outline';
+            } else if (route.name === { POSTS_ROUTE }) {
+              iconName = focused ? 'images' : 'images-outline';
+            }
+            return (
+              <Ionicons name={iconName} size={size} color={color} />
+            );
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}
+      >
+        <Tabs.Screen name={POSTS_ROUTE} component={PostsScreen} />
+        <Tabs.Screen
+          name={CREATEPOSTSCREEN_ROUTE}
+          component={CreatePostsScreen}
+        />
+
+        <Tabs.Screen
+          name={PROFILE_ROUTE}
+          component={() => (
+            <View
+              style={{ ...styles.btn, backgroundColor: 'tomato' }}
+            >
+              <Text>Profile</Text>
+            </View>
+          )}
+          options={{
+            tabBarIcon: ({ name, color, size }) => (
+              <Ionicons name="person" color={'white'} size={size} />
+            ),
+          }}
+          // listeners={{
+          //   tabPress: (e) => {
+          //     // Prevent default action
+          //     e.preventDefault();
+          //     alert('Home');
+          //   },
+          // }}
+        />
+      </Tabs.Navigator> */}
     </View>
   );
 };
