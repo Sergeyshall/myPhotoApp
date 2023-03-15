@@ -7,6 +7,7 @@ import PostsScreen from './PostsScreen';
 import CreatePostsScreen from './CreatePostsScreen';
 import { useNavigation } from '@react-navigation/native';
 import Context from '../context';
+import LogoutSvg from '../Img/LogOutSvg';
 
 const Tabs = createBottomTabNavigator();
 
@@ -62,7 +63,7 @@ const tabOptionsButtonsMap = {
   },
 };
 
-export default HomeScreen = ({ onRegisterPress }) => {
+export default HomeScreen = () => {
   const navigation = useNavigation();
   const context = useContext(Context);
 
@@ -71,8 +72,6 @@ export default HomeScreen = ({ onRegisterPress }) => {
       <Tabs.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-            console.log('route=====', route);
-
             const focusedState = focused ? 'focused' : 'blured';
 
             return tabOptionsButtonsMap[route.name][focusedState](
@@ -81,10 +80,9 @@ export default HomeScreen = ({ onRegisterPress }) => {
             );
           },
           headerRight: () => (
-            <Button
+            <LogoutSvg
+              style={styles.logoutSvg}
               onPress={() => context.setIsAuth(false)}
-              title="Logout"
-              color="#000"
             />
           ),
         })}
@@ -106,7 +104,13 @@ export default HomeScreen = ({ onRegisterPress }) => {
             },
           }}
         />
-        <Tabs.Screen name={PROFILE_ROUTE} component={ProfileScreen} />
+        <Tabs.Screen
+          name={PROFILE_ROUTE}
+          component={ProfileScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Tabs.Navigator>
     </>
   );
@@ -117,6 +121,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logoutSvg: {
+    position: 'absolute',
+    right: 15,
+    top: 15,
   },
   btn: {
     flex: 1,

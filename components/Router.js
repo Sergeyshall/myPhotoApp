@@ -2,9 +2,8 @@ import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Button } from 'react-native';
 import CreatePostsScreen from '../screens/CreatePostsScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+// import ProfileScreen from '../screens/ProfileScreen';
 const MainStack = createStackNavigator();
 
 const useAuth = (isAuth) =>
@@ -14,15 +13,6 @@ const useAuth = (isAuth) =>
         name="Home"
         component={HomeScreen}
         options={{
-          // title: 'Home screen',
-          // headerStyle: {
-          //   backgroundColor: '#f4511e',
-          // },
-          // headerTintColor: '#fff',
-          // headerTitleStyle: {
-          //   fontWeight: 'bold',
-          //   fontSize: 20,
-          // },
           headerShown: false,
         }}
       />
@@ -37,7 +27,7 @@ const useAuth = (isAuth) =>
         name="ProfileScreen"
         component={ProfileScreen}
         options={{
-          title: 'Profile',
+          headerShown: false,
         }}
       /> */}
     </>

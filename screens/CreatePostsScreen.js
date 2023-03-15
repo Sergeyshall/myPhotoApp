@@ -1,4 +1,4 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import {
   StyleSheet,
@@ -8,44 +8,51 @@ import {
   Image,
 } from 'react-native';
 import imgForest from '../Img/Forest.jpg';
-
-const Tabs = createBottomTabNavigator();
-const DeleteButton = () => {
-  <>
-    <View style={{ ...styles.btn, backgroundColor: 'gray' }}>
-      <Ionicons name={iconName} size={size} color={colorIcon} />
-    </View>
-  </>;
-};
-
-export default CreatePostsScreen = () => {
+export default CreatePostScreen = () => {
   return (
-    <>
-      <Tabs.Navigator>
-        <Tabs.Screen
-          name="CreatePost"
-          component={() => (
-            <View style={styles.container}>
-              <Text>Create Post</Text>
-            </View>
-          )}
-          options={{
-            tabBarIcon: ({ name, color, size }) => (
-              <Ionicons name="trash" color={'#F6F6F6'} size={size} />
-            ),
-          }}
-          listeners={{
-            tabPress: (e) => {
-              // Prevent default action
-              e.preventDefault();
-              alert('Home');
-            },
-          }}
-        />
-      </Tabs.Navigator>
-    </>
+    <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+      <Ionicons name="trash" color="white" />
+    </TouchableOpacity>
   );
 };
+
+// const Tabs = createBottomTabNavigator();
+// const DeleteButton = () => {
+//   <>
+//     <View style={{ ...styles.btn, backgroundColor: 'gray' }}>
+//       <Ionicons name={iconName} size={size} color={colorIcon} />
+//     </View>
+//   </>;
+// };
+
+// export default CreatePostsScreen = () => {
+//   return (
+//     <>
+//       <Tabs.Navigator>
+//         <Tabs.Screen
+//           name="CreatePost"
+//           component={() => (
+//             <View style={styles.container}>
+//               <Text>Create Post</Text>
+//             </View>
+//           )}
+//           options={{
+//             tabBarIcon: ({ name, color, size }) => (
+//               <Ionicons name="trash" color={'#F6F6F6'} size={size} />
+//             ),
+//           }}
+//           listeners={{
+//             tabPress: (e) => {
+//               // Prevent default action
+//               e.preventDefault();
+//               alert('Home');
+//             },
+//           }}
+//         />
+//       </Tabs.Navigator>
+//     </>
+//   );
+// };
 
 const styles = StyleSheet.create({
   container: {
@@ -54,18 +61,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btn: {
-    flex: 1,
     marginLeft: 16,
     marginRight: 16,
-    margin: 5,
     width: 70,
+    height: 40,
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'tomato',
+    backgroundColor: 'gray',
     borderWidth: 0,
     borderRadius: 100,
-    padding: 5,
+    padding: 10,
   },
   btnText: {
     color: '#FFFFFF',

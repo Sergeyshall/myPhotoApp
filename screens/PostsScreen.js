@@ -5,23 +5,25 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+
+import imgAvatar from '../Img/Avatar.jpg';
 import imgForest from '../Img/Forest.jpg';
 import Wrapper from '../components/Wrapper';
 
 export default PostsScreen = () => {
   return (
-    <View>
-      <View>
-        <Text>Posts</Text>
+    <View style={styles.container}>
+      <View style={styles.imgWrap}>
+        <Image
+          source={imgAvatar}
+          resizeMode="cover"
+          style={styles.imgAvatar}
+        />
+        <View style={{ marginLeft: 10 }}>
+          <Text>Natalia Romanova</Text>
+          <Text>email@example.com</Text>
+        </View>
       </View>
-      <Image
-        // source={require(imgForest)}
-        resizeMode="cover"
-        style={styles.imagePost}
-      />
-      <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
-        <Text style={styles.btnText}>+</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -29,8 +31,16 @@ export default PostsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  imgWrap: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 32,
+    marginLeft: 16,
+
+    // justifyContent: 'center',
   },
   btn: {
     marginLeft: 16,
@@ -55,5 +65,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: 120,
     height: 120,
+  },
+  imgAvatar: {
+    borderRadius: 16,
+    width: 60,
+    height: 60,
   },
 });
