@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,15 +10,18 @@ import {
 
 import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
 import Wrapper from '../components/Wrapper';
+import Context from '../context';
 
 const initialState = {
   login: '',
   email: '',
   password: '',
 };
-export default LoginScreen = ({ onRegisterPress }) => {
+export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
+  const context = useContext(Context);
   // const [login, setLogin] = React.useState('');
   // const [mail, setMail] = React.useState('');
+  // const { userId } = route.params;
   const [passWord, setPassWord] = useState('');
   const [state, setState] = useState(initialState);
   const [isShowKeybord, setIsShowKeybord] = useState(false);
@@ -32,6 +35,13 @@ export default LoginScreen = ({ onRegisterPress }) => {
     setState(initialState);
     console.log(state);
   };
+
+  const loginHandler = () => {
+    keybordHide();
+
+    onLoginSuccessful();
+  };
+
   return (
     <Wrapper title="Login" hideAvatar>
       <TextInput
@@ -73,11 +83,18 @@ export default LoginScreen = ({ onRegisterPress }) => {
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.btn}
-        onPress={keybordHide}
+        onPress={() => {
+          context.setIsAuth(true);
+        }}
       >
         <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
-      <Text style={styles.signInText} onPress={onRegisterPress}>
+      <Text
+        style={styles.signInText}
+        onPress={() => {
+          navigation.navigate('Registration', { sessionId: 45, userId: "22e24" });
+        }}
+      >
         Do not have account? Register
       </Text>
     </Wrapper>
