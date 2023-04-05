@@ -1,16 +1,24 @@
+import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   Image,
+  FlatList,
 } from 'react-native';
 
 import imgAvatar from '../Img/Avatar.jpg';
 import imgForest from '../Img/Forest.jpg';
 import Wrapper from '../components/Wrapper';
 
-export default PostsScreen = () => {
+export default PostsScreen = ({ route }) => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    if (route.params) {
+      setPosts((prevState) => [...prevState, route.params]);
+    }
+  }, [route.params]);
   return (
     <View style={styles.container}>
       <View style={styles.imgWrap}>
@@ -24,6 +32,24 @@ export default PostsScreen = () => {
           <Text>email@example.com</Text>
         </View>
       </View>
+      <FlatList
+        data={posts}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              marginBottom: 10,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Image
+              source={{ uri: item.photo }}
+              style={styles.imagePost}
+            />
+          </View>
+        )}
+      />
     </View>
   );
 };
@@ -65,6 +91,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: 120,
     height: 120,
+    borderColor: 'red',
+    backgroundColor: 'red',
   },
   imgAvatar: {
     borderRadius: 16,

@@ -20,7 +20,7 @@ export default CreatePostScreen = ({ navigation }) => {
   };
 
   const sendPhoto = () => {
-    navigation.navigate('Posts');
+    navigation.navigate('Posts', { photo });
   };
 
   return (
