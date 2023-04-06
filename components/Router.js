@@ -4,6 +4,7 @@ import RegistrationScreen from '../screens/RegistrationScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import CreatePostsScreen from '../screens/CreatePostsScreen';
 import MapScreen from '../screens/MapScreen';
+import CommentsScreen from '../screens/CommentsScreen';
 
 // import ProfileScreen from '../screens/ProfileScreen';
 const MainStack = createStackNavigator();
@@ -32,13 +33,13 @@ const useAuth = (isAuth) =>
           title: 'Choose location',
         }}
       />
-      {/* <MainStack.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
+      <MainStack.Screen
+        name="CommentsScreen"
+        component={CommentsScreen}
         options={{
-          headerShown: false,
+          title: 'Make comment',
         }}
-      /> */}
+      />
     </>
   ) : (
     <>

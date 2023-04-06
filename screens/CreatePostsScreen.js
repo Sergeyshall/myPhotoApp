@@ -50,7 +50,8 @@ export default CreatePostScreen = ({ navigation }) => {
     navigation.navigate('MapScreen', { location });
   };
   const sendComments = () => {
-    navigation.navigate('Posts', { photo });
+    name = 'CommentsScreen';
+    navigation.navigate('CommentsScreen', {});
   };
   useEffect(() => {
     async () => {
@@ -84,9 +85,9 @@ export default CreatePostScreen = ({ navigation }) => {
       <TouchableOpacity onPress={sendLocation} style={styles.sentBtn}>
         <Text style={styles.snap}>Location</Text>
       </TouchableOpacity>
-      {/* <TouchableOpacity onPress={sendComments} style={styles.sentBtn}>
+      <TouchableOpacity onPress={sendComments} style={styles.sentBtn}>
         <Text style={styles.snap}>Comments</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
       <TouchableOpacity onPress={sendPhoto} style={styles.sentBtn}>
         <Text style={styles.snap}>Publish</Text>
       </TouchableOpacity>
