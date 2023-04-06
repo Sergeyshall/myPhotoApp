@@ -1,7 +1,8 @@
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Camera } from 'expo-camera';
+import * as Location from 'expo-location';
 import {
   StyleSheet,
   Text,
@@ -10,11 +11,33 @@ import {
   Image,
 } from 'react-native';
 
+async function getLocationPermission(callBack) {
+  const { status } =
+    await Location.requestForegroundPermissionsAsync();
+  if (status !== 'granted') {
+    // Permission not granted
+    alert('Permission not granted');
+    return;
+  }
+  // Permission granted
+  callBack();
+}
+
 export default CreatePostScreen = ({ navigation }) => {
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState('');
+  const [location, setLocation] = useState(null);
   const takePhoto = async () => {
     const photo = await camera.takePictureAsync();
+    getLocationPermission(async () => {
+      const location = await Location.getCurrentPositionAsync({});
+      const coords = {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      };
+      setLocation(coords);
+    });
+
     setPhoto(photo.uri);
     console.log('cam', photo.uri);
   };
@@ -22,6 +45,22 @@ export default CreatePostScreen = ({ navigation }) => {
   const sendPhoto = () => {
     navigation.navigate('Posts', { photo });
   };
+
+  const sendLocation = () => {
+    navigation.navigate('MapScreen', { location });
+  };
+  const sendComments = () => {
+    navigation.navigate('Posts', { photo });
+  };
+  useEffect(() => {
+    async () => {
+      let { status } = await Location.locationPermissionsResponce();
+      if (status !== 'granted') {
+        console.log('Permission to access location was denied');
+      }
+    };
+  }),
+    [];
 
   return (
     <View style={styles.container}>
@@ -42,6 +81,12 @@ export default CreatePostScreen = ({ navigation }) => {
         </TouchableOpacity>
       </Camera>
       <Text>Post your photo</Text>
+      <TouchableOpacity onPress={sendLocation} style={styles.sentBtn}>
+        <Text style={styles.snap}>Location</Text>
+      </TouchableOpacity>
+      {/* <TouchableOpacity onPress={sendComments} style={styles.sentBtn}>
+        <Text style={styles.snap}>Comments</Text>
+      </TouchableOpacity> */}
       <TouchableOpacity onPress={sendPhoto} style={styles.sentBtn}>
         <Text style={styles.snap}>Publish</Text>
       </TouchableOpacity>
@@ -91,6 +136,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
   },
+
   btn: {
     marginLeft: 16,
     marginRight: 16,

@@ -3,6 +3,8 @@ import HomeScreen from '../screens/HomeScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import CreatePostsScreen from '../screens/CreatePostsScreen';
+import MapScreen from '../screens/MapScreen';
+
 // import ProfileScreen from '../screens/ProfileScreen';
 const MainStack = createStackNavigator();
 
@@ -21,6 +23,13 @@ const useAuth = (isAuth) =>
         component={CreatePostsScreen}
         options={{
           title: 'Create Post',
+        }}
+      />
+      <MainStack.Screen
+        name="MapScreen"
+        component={MapScreen}
+        options={{
+          title: 'Choose location',
         }}
       />
       {/* <MainStack.Screen

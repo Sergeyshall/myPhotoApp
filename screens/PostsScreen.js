@@ -15,6 +15,7 @@ import Wrapper from '../components/Wrapper';
 export default PostsScreen = ({ route }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
+    console.log(route.params);
     if (route.params) {
       setPosts((prevState) => [...prevState, route.params]);
     }
