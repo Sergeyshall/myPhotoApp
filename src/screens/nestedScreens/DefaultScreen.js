@@ -8,9 +8,9 @@ import {
   FlatList,
 } from 'react-native';
 
-import imgAvatar from '../Img/Avatar.jpg';
-import imgForest from '../Img/Forest.jpg';
-import Wrapper from '../components/Wrapper';
+import imgAvatar from '../../../Img/Avatar.jpg';
+// import imgForest from '../../Img/Forest.jpg';
+// import Wrapper from '../../components/Wrapper';
 
 export default DefaultScreen = ({ route }) => {
   const [posts, setPosts] = useState([]);

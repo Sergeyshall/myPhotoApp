@@ -43,7 +43,7 @@ export default CreatePostScreen = ({ navigation }) => {
   };
 
   const sendPhoto = () => {
-    navigation.navigate('Posts', { photo });
+    navigation.navigate('DefaultScreen', { photo });
   };
 
   const sendLocation = () => {

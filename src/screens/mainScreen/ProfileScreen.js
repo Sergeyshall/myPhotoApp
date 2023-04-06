@@ -10,12 +10,12 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
-import imgForest from '../Img/Forest.jpg';
-import imgAvatar from '../Img/Avatar.jpg';
-import imgBg from '../Img/PhotoBG.jpg';
-import DeleteSvg from '../Img/deleteSvg';
-import LogoutSvg from '../Img/LogOutSvg';
-import Context from '../context';
+import imgForest from '../../../Img/Forest.jpg';
+import imgAvatar from '../../../Img/Avatar.jpg';
+import imgBg from '../../../Img/PhotoBG.jpg';
+import DeleteSvg from '../../../Img/deleteSvg';
+import LogoutSvg from '../../../Img/LogOutSvg';
+import Context from '../../../context';
 // const Tabs = createBottomTabNavigator();
 
 // const PROFILE_ROUTE = 'Profile';

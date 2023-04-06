@@ -19,7 +19,7 @@ const App = () => {
     <Context.Provider value={{ setIsAuth }}>
       <View style={{ height: '100%' }}>
         <NavigationContainer>
-          <Router isAuth={isAuth}/>
+          <Router isAuth={isAuth} />
         </NavigationContainer>
       </View>
     </Context.Provider>

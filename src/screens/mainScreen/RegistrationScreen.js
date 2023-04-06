@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   Keyboard,
 } from 'react-native';
-import Context from '../context';
+import Context from '../../../context';
 
-import imgAvatar from '../Img/Avatar.jpg';
-import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
-import Wrapper from '../components/Wrapper';
+import imgAvatar from '../../../Img/Avatar.jpg';
+import { useTogglePasswordVisibility } from '../../../hooks/useTogglePasswordVisibility';
+import Wrapper from '../../../components/Wrapper';
 
 const initialState = {
   login: '',
