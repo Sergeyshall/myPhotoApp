@@ -50,7 +50,6 @@ export default CreatePostScreen = ({ navigation }) => {
     navigation.navigate('MapScreen', { location });
   };
   const sendComments = () => {
-    name = 'CommentsScreen';
     navigation.navigate('CommentsScreen', {});
   };
   useEffect(() => {

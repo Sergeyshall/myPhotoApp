@@ -8,9 +8,9 @@ import {
   Keyboard,
 } from 'react-native';
 
-import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
-import Wrapper from '../components/Wrapper';
-import Context from '../context';
+import { useTogglePasswordVisibility } from '../../../hooks/useTogglePasswordVisibility';
+import Wrapper from '../../../components/Wrapper';
+import Context from '../../../context';
 
 const initialState = {
   login: '',
@@ -92,7 +92,10 @@ export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
       <Text
         style={styles.signInText}
         onPress={() => {
-          navigation.navigate('Registration', { sessionId: 45, userId: "22e24" });
+          navigation.navigate('Registration', {
+            sessionId: 45,
+            userId: '22e24',
+          });
         }}
       >
         Do not have account? Register

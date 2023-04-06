@@ -12,7 +12,7 @@ import imgAvatar from '../Img/Avatar.jpg';
 import imgForest from '../Img/Forest.jpg';
 import Wrapper from '../components/Wrapper';
 
-export default PostsScreen = ({ route }) => {
+export default DefaultScreen = ({ route }) => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     console.log(route.params);

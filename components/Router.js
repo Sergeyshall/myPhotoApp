@@ -26,7 +26,7 @@ const useAuth = (isAuth) =>
           title: 'Create Post',
         }}
       />
-      <MainStack.Screen
+      {/* <MainStack.Screen
         name="MapScreen"
         component={MapScreen}
         options={{
@@ -39,7 +39,7 @@ const useAuth = (isAuth) =>
         options={{
           title: 'Make comment',
         }}
-      />
+      /> */}
     </>
   ) : (
     <>
