@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import DefaultScreen from '../nestedScreens/DefaultScreen';
 import CommentsScreen from '../nestedScreens/CommentsScreen';
-import MapScreen from '../nestedScreens/MapScreen';
 import Context from '../../../context';
 import LogoutSvg from '../../../Img/LogOutSvg';
 
@@ -31,7 +30,7 @@ const PostsScreen = () => {
         name="CommentsScreen"
         component={CommentsScreen}
       />
-      <NestedScreen.Screen name="MapScreen" component={MapScreen} />
+      {/* <NestedScreen.Screen name="MapScreen" component={MapScreen} /> */}
     </NestedScreen.Navigator>
   );
 };

@@ -10,13 +10,14 @@ const App = () => {
   console.log('Maria');
   const isLoadingComplete = useCachedResources();
   const [isAuth, setIsAuth] = useState(false);
+  const [context, setContext] = useState({});
 
   if (!isLoadingComplete) {
     return null;
   }
 
   return (
-    <Context.Provider value={{ setIsAuth }}>
+    <Context.Provider value={{ setIsAuth, context, setContext }}>
       <View style={{ height: '100%' }}>
         <NavigationContainer>
           <Router isAuth={isAuth} />

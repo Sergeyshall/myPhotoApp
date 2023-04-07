@@ -1,5 +1,5 @@
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   MaterialIcons,
   Ionicons,
@@ -14,7 +14,10 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from 'react-native';
+import Context from '../../../context';
 
 async function getLocationPermission(callBack) {
   const { status } =
@@ -29,9 +32,22 @@ async function getLocationPermission(callBack) {
 }
 
 export default CreatePostScreen = ({ navigation }) => {
+  const { context } = useContext(Context);
+
+  console.log('context=======', context);
+
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState('');
-  const [location, setLocation] = useState(null);
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState(context.location);
+
+  useEffect(() => {
+    console.log('Set location');
+    setLocation(context.location);
+  }, [context.location]);
+
+  console.log('======location++++', location);
+
   const takePhoto = async () => {
     const photo = await camera.takePictureAsync();
     getLocationPermission(async () => {
@@ -48,7 +64,7 @@ export default CreatePostScreen = ({ navigation }) => {
   };
 
   const sendPhoto = () => {
-    navigation.navigate('DefaultScreen', { photo });
+    navigation.navigate('DefaultScreen', { photo, location, name });
   };
 
   const sendLocation = () => {
@@ -57,6 +73,10 @@ export default CreatePostScreen = ({ navigation }) => {
   const sendComments = () => {
     navigation.navigate('CommentsScreen', {});
   };
+
+  const handleBlur = () => {
+    Keyboard.dismiss();
+  };
   useEffect(() => {
     async () => {
       let { status } = await Location.locationPermissionsResponce();
@@ -64,49 +84,57 @@ export default CreatePostScreen = ({ navigation }) => {
         console.log('Permission to access location was denied');
       }
     };
-  }),
-    [];
+  }, []);
 
   return (
-    <View style={styles.container}>
-      <Camera style={styles.camera} ref={setCamera}>
-        {photo && (
-          <View style={styles.photoContainer}>
-            <Image
-              source={{ uri: photo }}
-              style={{ width: 200, height: 200, borderRadius: 10 }}
+    <TouchableWithoutFeedback onPress={handleBlur}>
+      <View style={styles.container}>
+        <Camera style={styles.camera} ref={setCamera}>
+          {photo && (
+            <View style={styles.photoContainer}>
+              <Image
+                source={{ uri: photo }}
+                style={{ width: 200, height: 200, borderRadius: 10 }}
+              />
+            </View>
+          )}
+          <TouchableOpacity
+            onPress={takePhoto}
+            style={styles.snapContainer}
+          >
+            <MaterialIcons
+              name="add-a-photo"
+              color="white"
+              size={24}
             />
-          </View>
-        )}
-        <TouchableOpacity
-          onPress={takePhoto}
-          style={styles.snapContainer}
-        >
-          <MaterialIcons name="add-a-photo" color="white" size={24} />
+          </TouchableOpacity>
+        </Camera>
+        <Text style={styles.text}>Post your photo</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Name..."
+          onChangeText={(value) => setName(value)}
+        ></TextInput>
+        <TouchableOpacity onPress={sendLocation} style={styles.input}>
+          <EvilIcons name="location" size={24} color="#BDBDBD" />
+          <Text style={styles.snap}>
+            Location: {location?.latitude},{location?.longitude}
+          </Text>
         </TouchableOpacity>
-      </Camera>
-      <Text style={styles.text}>Post your photo</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name..."
-      ></TextInput>
-      <TouchableOpacity onPress={sendLocation} style={styles.input}>
-        <EvilIcons name="location" size={24} color="#BDBDBD" />
-        <Text style={styles.snap}>Location</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={sendComments} style={styles.input}>
-        <EvilIcons name="comment" size={24} color="#BDBDBD" />
-        <Text style={styles.snap}>Comments</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={sendPhoto} style={styles.sentBtn}>
-        <Text style={styles.snap}>Publish</Text>
-      </TouchableOpacity>
-      <View style={{ alignItems: 'center' }}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
-          <Ionicons name="trash" color="#BDBDBD" size={20} />
+        {/* <TouchableOpacity onPress={sendComments} style={styles.input}>
+          <EvilIcons name="comment" size={24} color="#BDBDBD" />
+          <Text style={styles.snap}>Comments</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity onPress={sendPhoto} style={styles.sentBtn}>
+          <Text style={styles.snap}>Publish</Text>
         </TouchableOpacity>
+        <View style={{ alignItems: 'center' }}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+            <Ionicons name="trash" color="#BDBDBD" size={20} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

@@ -7,19 +7,24 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-
+import { EvilIcons } from '@expo/vector-icons';
 import imgAvatar from '../../../Img/Avatar.jpg';
 // import imgForest from '../../Img/Forest.jpg';
 // import Wrapper from '../../components/Wrapper';
 
-export default DefaultScreen = ({ route }) => {
+export default DefaultScreen = ({ route, navigation }) => {
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     console.log(route.params);
     if (route.params) {
       setPosts((prevState) => [...prevState, route.params]);
     }
   }, [route.params]);
+
+  const sendComments = () => {
+    navigation.navigate('CommentsScreen', {});
+  };
   return (
     <View style={styles.container}>
       <View style={styles.imgWrap}>
@@ -48,6 +53,38 @@ export default DefaultScreen = ({ route }) => {
               source={{ uri: item.photo }}
               style={styles.imagePost}
             />
+            <Text style={styles.text}>{item.name}</Text>
+            {console.log('==========', item)}
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+              }}
+            >
+              <TouchableOpacity
+                onPress={sendComments}
+                style={styles.inputComment}
+              >
+                <EvilIcons name="comment" size={24} color="#BDBDBD" />
+                <Text style={styles.snap}>0</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                // onPress={sendLocation}
+                style={styles.inputMap}
+              >
+                <EvilIcons
+                  name="location"
+                  size={24}
+                  color="#BDBDBD"
+                />
+                <Text style={styles.snap}>
+                  Location: {item.location.latitude},
+                  {item.location.longitude}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
       />
@@ -69,29 +106,23 @@ const styles = StyleSheet.create({
 
     // justifyContent: 'center',
   },
-  btn: {
+
+  text: {
     marginLeft: 16,
     marginRight: 16,
-    width: 70,
-    height: 40,
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FF6C00',
-    borderWidth: 0,
-    borderRadius: 100,
-    padding: 10,
-  },
-  btnText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    lineHeight: 19,
+    marginBottom: 5,
+    color: '#BDBDBD',
     fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 18,
+    justifyContent: '',
+    padding: 5,
   },
   imagePost: {
+    marginTop: 32,
     borderRadius: 20,
-    width: 120,
-    height: 120,
+    width: 343,
+    height: 240,
     borderColor: 'red',
     backgroundColor: 'red',
   },
@@ -99,5 +130,39 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     width: 60,
     height: 60,
+  },
+  inputMap: {
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 5,
+    width: 255,
+    height: 24,
+    textAlign: 'left',
+    color: '#BDBDBD',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 18,
+    borderBottomColor: '#E8E8E8',
+    borderBottomWidth: 1,
+    borderRadius: 8,
+
+    flexDirection: 'row',
+  },
+  inputComment: {
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 5,
+    width: 39,
+    height: 24,
+    textAlign: 'left',
+    color: '#BDBDBD',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 18,
+    borderBottomColor: '#E8E8E8',
+    borderBottomWidth: 1,
+    borderRadius: 8,
+
+    flexDirection: 'row',
   },
 });

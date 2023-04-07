@@ -4,7 +4,7 @@ import RegistrationScreen from '../src/screens/mainScreen/RegistrationScreen';
 import CreatePostsScreen from '../src/screens/mainScreen/CreatePostsScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// import MapScreen from '../screens/MapScreen';
+import MapScreen from '../src/screens/mainScreen/MapScreen';
 // import CommentsScreen from '../screens/CommentsScreen';
 
 // import ProfileScreen from '../screens/ProfileScreen';
@@ -27,6 +27,7 @@ const useAuth = (isAuth) =>
           title: 'Create Post',
         }}
       />
+      <MainStack.Screen name="MapScreen" component={MapScreen} />
       {/* <MainStack.Screen
         name="MapScreen"
         component={MapScreen}
