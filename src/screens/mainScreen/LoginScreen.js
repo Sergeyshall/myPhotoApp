@@ -19,9 +19,6 @@ const initialState = {
 };
 export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
   const context = useContext(Context);
-  // const [login, setLogin] = React.useState('');
-  // const [mail, setMail] = React.useState('');
-  // const { userId } = route.params;
   const [passWord, setPassWord] = useState('');
   const [state, setState] = useState(initialState);
   const [isShowKeybord, setIsShowKeybord] = useState(false);
@@ -47,21 +44,17 @@ export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
       <TextInput
         style={styles.input}
         value={state.email}
-        // onChangeText={(mail) => setMail(mail)}
         onChangeText={(value) =>
           setState((prevState) => ({
             ...prevState,
             email: value,
           }))
         }
-        // value={mail}
         placeholder="e-mail"
         onFocus={() => setIsShowKeybord(true)}
       ></TextInput>
       <View style={styles.passwordContainer}>
         <TextInput
-          style={styles.inputPassWord}
-          // onChangeText={(passWord) => setPassWord(passWord)}
           onChangeText={(value) =>
             setState((prevState) => ({
               ...prevState,

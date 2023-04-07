@@ -1,6 +1,10 @@
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import {
+  MaterialIcons,
+  Ionicons,
+  EvilIcons,
+} from '@expo/vector-icons';
 import { Camera } from 'expo-camera';
 import * as Location from 'expo-location';
 import {
@@ -9,6 +13,7 @@ import {
   View,
   TouchableOpacity,
   Image,
+  TextInput,
 } from 'react-native';
 
 async function getLocationPermission(callBack) {
@@ -77,22 +82,30 @@ export default CreatePostScreen = ({ navigation }) => {
           onPress={takePhoto}
           style={styles.snapContainer}
         >
-          <Text style={styles.snap}>Use camera</Text>
+          <MaterialIcons name="add-a-photo" color="white" size={24} />
         </TouchableOpacity>
       </Camera>
-      <Text>Post your photo</Text>
-      <TouchableOpacity onPress={sendLocation} style={styles.sentBtn}>
+      <Text style={styles.text}>Post your photo</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Name..."
+      ></TextInput>
+      <TouchableOpacity onPress={sendLocation} style={styles.input}>
+        <EvilIcons name="location" size={24} color="#BDBDBD" />
         <Text style={styles.snap}>Location</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={sendComments} style={styles.sentBtn}>
+      <TouchableOpacity onPress={sendComments} style={styles.input}>
+        <EvilIcons name="comment" size={24} color="#BDBDBD" />
         <Text style={styles.snap}>Comments</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={sendPhoto} style={styles.sentBtn}>
         <Text style={styles.snap}>Publish</Text>
       </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
-        <Ionicons name="trash" color="white" />
-      </TouchableOpacity>
+      <View style={{ alignItems: 'center' }}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+          <Ionicons name="trash" color="#BDBDBD" size={20} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -100,35 +113,37 @@ export default CreatePostScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
 
   camera: {
-    height: '50%',
+    height: '40%',
     marginHorizontal: 16,
-    marginTop: 32,
+    marginTop: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
   },
 
   snap: {
-    color: 'white',
+    color: '#BDBDBD',
     fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 19,
   },
 
   snapContainer: {
-    marginTop: 200,
     width: 70,
     height: 70,
-    backgroundColor: 'gray',
+    backgroundColor: 'rgba(52, 52, 52, 0.7)',
     borderRadius: '50',
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
   },
   photoContainer: {
+    width: '100%',
+    height: '100%',
     position: 'absolute',
     top: 0,
     left: 0,
@@ -136,8 +151,36 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
   },
+  text: {
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 5,
+    color: '#BDBDBD',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 18,
+
+    padding: 5,
+  },
+  input: {
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 5,
+    height: 50,
+    textAlign: 'left',
+    color: '#BDBDBD',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 16,
+    lineHeight: 18,
+    borderBottomColor: '#E8E8E8',
+    borderBottomWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+    flexDirection: 'row',
+  },
 
   btn: {
+    marginTop: 30,
     marginLeft: 16,
     marginRight: 16,
     width: 70,
@@ -145,18 +188,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray',
+    backgroundColor: '#F6F6F6',
     borderWidth: 0,
-    borderRadius: 100,
+    borderRadius: 20,
     padding: 10,
   },
   sentBtn: {
-    backgroundColor: 'gray',
+    marginTop: 20,
+    backgroundColor: '#F6F6F6',
     width: 343,
     height: 40,
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
+    marginLeft: 16,
+    marginRight: 16,
   },
 });
