@@ -1,8 +1,12 @@
-import LoginScreen from '../screens/LoginScreen';
-import HomeScreen from '../screens/HomeScreen';
-import RegistrationScreen from '../screens/RegistrationScreen';
+import LoginScreen from '../src/screens/mainScreen/LoginScreen';
+import HomeScreen from '../src/screens/mainScreen/HomeScreen';
+import RegistrationScreen from '../src/screens/mainScreen/RegistrationScreen';
+import CreatePostsScreen from '../src/screens/mainScreen/CreatePostsScreen';
 import { createStackNavigator } from '@react-navigation/stack';
-import CreatePostsScreen from '../screens/CreatePostsScreen';
+
+import MapScreen from '../src/screens/mainScreen/MapScreen';
+// import CommentsScreen from '../screens/CommentsScreen';
+
 // import ProfileScreen from '../screens/ProfileScreen';
 const MainStack = createStackNavigator();
 
@@ -23,11 +27,19 @@ const useAuth = (isAuth) =>
           title: 'Create Post',
         }}
       />
+      <MainStack.Screen name="MapScreen" component={MapScreen} />
       {/* <MainStack.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
+        name="MapScreen"
+        component={MapScreen}
         options={{
-          headerShown: false,
+          title: 'Choose location',
+        }}
+      />
+      <MainStack.Screen
+        name="CommentsScreen"
+        component={CommentsScreen}
+        options={{
+          title: 'Make comment',
         }}
       /> */}
     </>

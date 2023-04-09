@@ -8,9 +8,9 @@ import {
   Keyboard,
 } from 'react-native';
 
-import { useTogglePasswordVisibility } from '../hooks/useTogglePasswordVisibility';
-import Wrapper from '../components/Wrapper';
-import Context from '../context';
+import { useTogglePasswordVisibility } from '../../../hooks/useTogglePasswordVisibility';
+import Wrapper from '../../../components/Wrapper';
+import Context from '../../../context';
 
 const initialState = {
   login: '',
@@ -19,27 +19,18 @@ const initialState = {
 };
 export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
   const context = useContext(Context);
-  // const [login, setLogin] = React.useState('');
-  // const [mail, setMail] = React.useState('');
-  // const { userId } = route.params;
   const [passWord, setPassWord] = useState('');
   const [state, setState] = useState(initialState);
-  const [isShowKeybord, setIsShowKeybord] = useState(false);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
 
-  const keybordHide = () => {
-    setIsShowKeybord(false);
+  const keyboardHide = () => {
+    setIsShowKeyboard(false);
     Keyboard.dismiss();
     setState(initialState);
     console.log(state);
-  };
-
-  const loginHandler = () => {
-    keybordHide();
-
-    onLoginSuccessful();
   };
 
   return (
@@ -47,21 +38,17 @@ export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
       <TextInput
         style={styles.input}
         value={state.email}
-        // onChangeText={(mail) => setMail(mail)}
         onChangeText={(value) =>
           setState((prevState) => ({
             ...prevState,
             email: value,
           }))
         }
-        // value={mail}
         placeholder="e-mail"
-        onFocus={() => setIsShowKeybord(true)}
+        onFocus={() => setIsShowKeyboard(true)}
       ></TextInput>
       <View style={styles.passwordContainer}>
         <TextInput
-          style={styles.inputPassWord}
-          // onChangeText={(passWord) => setPassWord(passWord)}
           onChangeText={(value) =>
             setState((prevState) => ({
               ...prevState,
@@ -71,7 +58,7 @@ export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
           value={state.password}
           placeholder="Password"
           secureTextEntry={passwordVisibility}
-          onFocus={() => setIsShowKeybord(true)}
+          onFocus={() => setIsShowKeyboard(true)}
         ></TextInput>
         <Text
           style={styles.showText}
@@ -92,7 +79,10 @@ export default LoginScreen = ({ onLoginSuccessful, navigation }) => {
       <Text
         style={styles.signInText}
         onPress={() => {
-          navigation.navigate('Registration', { sessionId: 45, userId: "22e24" });
+          navigation.navigate('Registration', {
+            sessionId: 45,
+            userId: '22e24',
+          });
         }}
       >
         Do not have account? Register

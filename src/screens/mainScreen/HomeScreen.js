@@ -6,8 +6,8 @@ import ProfileScreen from './ProfileScreen';
 import PostsScreen from './PostsScreen';
 import CreatePostsScreen from './CreatePostsScreen';
 import { useNavigation } from '@react-navigation/native';
-import Context from '../context';
-import LogoutSvg from '../Img/LogOutSvg';
+import Context from '../../../context';
+import LogoutSvg from '../../../Img/LogOutSvg';
 
 const Tabs = createBottomTabNavigator();
 
@@ -92,7 +92,13 @@ export default HomeScreen = () => {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tabs.Screen name={POSTS_ROUTE} component={PostsScreen} />
+        <Tabs.Screen
+          name={POSTS_ROUTE}
+          component={PostsScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Tabs.Screen
           name={CREATEPOSTSCREEN_ROUTE}
           component={CreatePostsScreen}
