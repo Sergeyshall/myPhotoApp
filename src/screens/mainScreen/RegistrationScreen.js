@@ -9,11 +9,13 @@ import {
 } from 'react-native';
 
 import { useDispatch } from 'react-redux';
+import { authSignUpUser } from '../../../redux/auth/authOperations';
+
 import Context from '../../../context';
 import imgAvatar from '../../../Img/Avatar.jpg';
 import { useTogglePasswordVisibility } from '../../../hooks/useTogglePasswordVisibility';
 import Wrapper from '../../../components/Wrapper';
-import { authSignUpUser } from '../../../redux/auth/authOperations';
+
 const initialState = {
   login: '',
   email: '',

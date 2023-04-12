@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   getAuth,
 } from 'firebase/auth';
 
@@ -23,5 +24,22 @@ export const authSignUpUser =
       console.log('error.message', error.message);
     }
   };
-export const authSignInUser = () => async (dispatch, getState) => {};
+export const authSignInUser =
+  ({ email, password }) =>
+  async (dispatch, getState) => {
+    console.log('user=======', email, password);
+    try {
+      console.log('email=', email, 'password=', password);
+
+      const user = await signInWithEmailAndPassword(
+        getAuth(app),
+        email,
+        password
+      );
+      console.log('user', user);
+    } catch (error) {
+      console.log('error', error);
+      console.log('error.message', error.message);
+    }
+  };
 export const authSignOutUser = () => async (dispatch, getState) => {};

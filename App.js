@@ -4,19 +4,27 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import { Provider } from 'react-redux';
-
 import { useState } from 'react';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import app from './firebase/config';
+
 import useCachedResources from './hooks/useCachedResources';
 import Context from './context';
 import Router from './components/Router';
 import { store } from './redux/store';
 
 const App = () => {
-  console.log('Maria');
   const isLoadingComplete = useCachedResources();
   const [isAuth, setIsAuth] = useState(false);
   const [context, setContext] = useState({});
-  const routing = Router(false);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setIsAuth(true);
+    }
+  });
+
   if (!isLoadingComplete) {
     return null;
   }
