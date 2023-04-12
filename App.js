@@ -1,29 +1,36 @@
 import { StyleSheet, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import useCachedResources from './hooks/useCachedResources';
+import {
+  NavigationContainer,
+  useRoute,
+} from '@react-navigation/native';
+import { Provider } from 'react-redux';
 
 import { useState } from 'react';
+import useCachedResources from './hooks/useCachedResources';
 import Context from './context';
 import Router from './components/Router';
+import { store } from './redux/store';
 
 const App = () => {
   console.log('Maria');
   const isLoadingComplete = useCachedResources();
   const [isAuth, setIsAuth] = useState(false);
   const [context, setContext] = useState({});
-
+  const routing = Router(false);
   if (!isLoadingComplete) {
     return null;
   }
 
   return (
-    <Context.Provider value={{ setIsAuth, context, setContext }}>
-      <View style={{ height: '100%' }}>
-        <NavigationContainer>
-          <Router isAuth={isAuth} />
-        </NavigationContainer>
-      </View>
-    </Context.Provider>
+    <Provider store={store}>
+      <Context.Provider value={{ setIsAuth, context, setContext }}>
+        <View style={{ height: '100%' }}>
+          <NavigationContainer>
+            <Router isAuth={isAuth} />
+          </NavigationContainer>
+        </View>
+      </Context.Provider>
+    </Provider>
   );
 };
 
