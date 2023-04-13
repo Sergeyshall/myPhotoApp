@@ -21,7 +21,7 @@ const PostsScreen = () => {
           headerRight: () => (
             <LogoutSvg
               style={styles.logoutSvg}
-              onPress={() => context.setIsAuth(false)}
+              // onPress={() => context.setIsAuth(false)}
             />
           ),
         }}

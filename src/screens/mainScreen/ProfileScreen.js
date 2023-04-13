@@ -34,7 +34,7 @@ export default ProfileScreen = () => {
       <View style={styles.screenWrap}>
         <LogoutSvg
           style={styles.logoutSvg}
-          onPress={() => context.setIsAuth(false)}
+          // onPress={() => context.setIsAuth(false)}
         />
         <View style={styles.imgWrap}>
           <Image

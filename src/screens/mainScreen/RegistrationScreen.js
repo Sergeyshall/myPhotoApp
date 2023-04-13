@@ -103,7 +103,7 @@ export default RegistrationScreen = ({
         style={styles.btn}
         onPress={() => {
           handleSubmit();
-          context.setIsAuth(true);
+          //context.setIsAuth(true);
         }}
       >
         <Text style={styles.btnText}>Registered</Text>
