@@ -5,6 +5,7 @@ import CreatePostsScreen from '../src/screens/mainScreen/CreatePostsScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import MapScreen from '../src/screens/mainScreen/MapScreen';
+import { useSelector } from "react-redux";
 // import CommentsScreen from '../screens/CommentsScreen';
 
 // import ProfileScreen from '../screens/ProfileScreen';
@@ -64,8 +65,16 @@ const useAuth = (isAuth) =>
     </>
   );
 
-export default ({ isAuth }) => (
-  <MainStack.Navigator initialRouteName="Login">
-    {useAuth(isAuth)}
-  </MainStack.Navigator>
-);
+export default () => {
+  const { userId } = useSelector(
+    (state) => state.auth
+  );
+
+  const isAuth = !!userId
+
+  return (
+    <MainStack.Navigator initialRouteName="Login">
+      {useAuth(isAuth)}
+    </MainStack.Navigator>
+  )
+};

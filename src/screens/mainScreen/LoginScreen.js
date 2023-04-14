@@ -8,7 +8,7 @@ import {
   Keyboard,
 } from 'react-native';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authSignInUser } from '../../../redux/auth/authOperations';
 
 import { useTogglePasswordVisibility } from '../../../hooks/useTogglePasswordVisibility';
@@ -26,6 +26,9 @@ export default ({ navigation }) => {
   const dispatch = useDispatch();
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
+  const { isLoading } = useSelector(
+    (state) => state.auth
+  );
 
   const handleSubmit = () => {
     setIsShowKeyboard(false);
@@ -35,7 +38,7 @@ export default ({ navigation }) => {
   };
 
   return (
-    <Wrapper title="Login" hideAvatar>
+    <Wrapper title="Login" hideAvatar isLoading={isLoading}>
       <TextInput
         style={styles.input}
         value={state.email}

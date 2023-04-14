@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import imgBg from '../Img/PhotoBG.jpg';
 import AddSvg from '../Img/AddSvg';
+import { ActivityIndicator } from 'react-native';
 
 export default ({
   children,
@@ -21,6 +22,7 @@ export default ({
   title,
   onAvatarSetHandler,
   isShowKeyboard,
+  isLoading,
 }) => {
   const [dimensions, setDimensions] = useState(
     Dimensions.get('window').width - 8 * 2
@@ -47,7 +49,7 @@ export default ({
     Keyboard.dismiss();
   };
 
-  return (
+  return isLoading ? <ActivityIndicator size="large" style={{ height: '100%' }}/> : (
     <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
         <ImageBackground

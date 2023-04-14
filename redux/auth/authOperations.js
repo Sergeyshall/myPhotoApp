@@ -1,12 +1,11 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  getAuth,
   updateProfile,
   onAuthStateChanged,
 } from 'firebase/auth';
 
-import app from '../../firebase/config';
+import auth from '../../firebase/config';
 import { authSlice } from './authReducer';
 
 export const authSignUpUser =
@@ -14,8 +13,6 @@ export const authSignUpUser =
   async (dispatch, getState) => {
     console.log('user=======', email, password);
     try {
-      const auth = getAuth(app);
-
       await createUserWithEmailAndPassword(auth, email, password);
 
       const user = auth.currentUser;
@@ -39,12 +36,14 @@ export const authSignUpUser =
 export const authSignInUser =
   ({ email, password }) =>
   async (dispatch, getState) => {
-    console.log('user=======', email, password);
-    try {
-      console.log('email=', email, 'password=', password);
+    // Show loading
+    dispatch(
+      authSlice.actions.setLoading(true)
+    );
 
+    try {
       const user = await signInWithEmailAndPassword(
-        getAuth(app),
+        auth,
         email,
         password
       );
@@ -53,13 +52,37 @@ export const authSignInUser =
       console.log('error', error);
       console.log('error.message', error.message);
     }
+
+    // Hide loading
+    dispatch(
+      authSlice.actions.setLoading(false)
+    );
   };
 
-export const authSignOutUser = () => async (dispatch, getState) => {};
+export const authSignOutUser = () => async (dispatch, getState) => {
+  // Show loading
+  dispatch(
+    authSlice.actions.setLoading(true)
+  );
 
-////////
-export const authStateChanged = () => async (dispatch, getState) => {
-  const auth = getAuth(app);
+  await auth.signOut()
+  dispatch(
+    authSlice.actions.updateUserProfile({
+      login: null,
+      userId: null,
+    })
+  );
+  // Hide loading
+  dispatch(
+    authSlice.actions.setLoading(false)
+  );
+};
+
+export const authStateChanged = () => async (dispatch) => {
+  // Show loading
+  dispatch(
+    authSlice.actions.setLoading(true)
+  );
 
   await onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -71,10 +94,11 @@ export const authStateChanged = () => async (dispatch, getState) => {
       dispatch(
         authSlice.actions.updateUserProfile(userUpdateProfile)
       );
-
-      dispatch(
-        authSlice.actions.authStateChange({ stateChange: true })
-      );
     }
+
+    // Hide loading
+    dispatch(
+      authSlice.actions.setLoading(false)
+    );
   });
 };

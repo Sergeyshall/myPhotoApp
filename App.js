@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 // Added to avoid "Unable to resolve "react-native-gesture-handler" error
 import 'react-native-gesture-handler';
 
@@ -30,15 +30,3 @@ const App = () => {
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mariaText: {
-    color: 'pink',
-  },
-});
