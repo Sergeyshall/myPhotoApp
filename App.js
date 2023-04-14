@@ -1,4 +1,6 @@
 import { StyleSheet, View } from 'react-native';
+// Added to avoid "Unable to resolve "react-native-gesture-handler" error
+import 'react-native-gesture-handler';
 
 import { Provider } from 'react-redux';
 import { useState } from 'react';

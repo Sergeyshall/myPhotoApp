@@ -26,10 +26,10 @@
     },
     "extra": {
       "eas": {
-        "projectId": "04f892e2-44d0-4763-9649-e94f1e650a8b"
+        "projectId": "27203761-5be1-44f4-b9b5-71bd3ea634bb"
       }
     },
-    "owner": "mariadekh",
+    "owner": "Sergeyshall",
     "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
   }
 }

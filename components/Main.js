@@ -25,7 +25,7 @@ const Main = () => {
 
   return (
     <NavigationContainer>
-      <Router isAuth={isAuth} />
+      <Router isAuth={false} />
     </NavigationContainer>
   );
 };

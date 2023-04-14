@@ -64,7 +64,7 @@ const useAuth = (isAuth) =>
     </>
   );
 
-export default Router = ({ isAuth }) => (
+export default ({ isAuth }) => (
   <MainStack.Navigator initialRouteName="Login">
     {useAuth(isAuth)}
   </MainStack.Navigator>

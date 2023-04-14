@@ -14,7 +14,7 @@ import {
 import imgBg from '../Img/PhotoBG.jpg';
 import AddSvg from '../Img/AddSvg';
 
-export default Wrapper = ({
+export default ({
   children,
   imageAvatar,
   hideAvatar,
@@ -39,16 +39,16 @@ export default Wrapper = ({
 
   useEffect(() => {
     if (!isShowKeyboard) {
-      keybordHide();
+      keyboardHide();
     }
   }, [isShowKeyboard]);
 
-  const keybordHide = () => {
+  const keyboardHide = () => {
     Keyboard.dismiss();
   };
 
   return (
-    <TouchableWithoutFeedback onPress={keybordHide}>
+    <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
         <ImageBackground
           source={imgBg}

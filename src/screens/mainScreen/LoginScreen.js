@@ -19,7 +19,7 @@ const initialState = {
   email: '',
   password: '',
 };
-export default LoginScreen = ({ navigation }) => {
+export default ({ navigation }) => {
   const context = useContext(Context);
   const [state, setState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     borderWidth: 1,
     borderColor: '#E8E8E8',
-    borderRadius: 8,
     padding: 10,
     borderRadius: 8,
     flexDirection: 'row',
